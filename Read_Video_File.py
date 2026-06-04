@@ -39,9 +39,7 @@ CAP = cv2.VideoCapture('Vid.mp4')
 # استخراج مواصفات الفيديو (السرعة والأبعاد)
 fps = CAP.get(cv2.CAP_PROP_FPS) # سرعة الإطارات في الثانية (Frames per Second)
 
-size = (
-       int(CAP.get(cv2.CAP_PROP_FRAME_WIDTH)),  # عرض الإطار
-       int(CAP.get(cv2.CAP_PROP_FRAME_HEIGHT))) # طول الإطار
+size = ( int(CAP.get(cv2.CAP_PROP_FRAME_WIDTH)) , int(CAP.get(cv2.CAP_PROP_FRAME_HEIGHT)) )
 
 print("Video Size:", size) # طباعة أبعاد الفيديو للتأكد
 

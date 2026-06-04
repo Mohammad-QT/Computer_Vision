@@ -6,10 +6,8 @@ import numpy as np
 cameraCapture = cv2.VideoCapture(0)
 
 cv2.waitKey(3000)
-fps = 30 # an assumption
-size = (
-       int(cameraCapture.get(cv2.CAP_PROP_FRAME_WIDTH)),
-       int(cameraCapture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+fps = 120 
+size = ( int(cameraCapture.get(cv2.CAP_PROP_FRAME_WIDTH)) , int(cameraCapture.get(cv2.CAP_PROP_FRAME_HEIGHT)) )
 
 print (size)
 

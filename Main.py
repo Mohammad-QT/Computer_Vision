@@ -5,8 +5,8 @@ import numpy as np
 # هذا السطر رح يكون بديل لسطر cv2.imread
 image = np.zeros((800, 800, 3), dtype=np.uint8)
 
-cv2.namedWindow("MAIN", cv2.WINDOW_AUTOSIZE)
-cv2.imshow('MAIN', image)
+cv2.namedWindow("MAIN", cv2.WINDOW_AUTOSIZE) #Create` a window named "MAIN" with automatic size
+cv2.imshow('MAIN', image) #Display the image in the window named "MAIN"
 
 # Read the image from the specified file path
 # Use forward slashes (/) for cross-platform compatibility in the file path
@@ -29,7 +29,7 @@ image[300:420, 100:120] = [125,255,120]
 
 # Take the entire image (all rows ':', all columns ':') 
 # and set color channel '1' (Green) to 0. This removes all green from the image!
-image[:,:,1] = 0;
+image[:,:,1] = 0
 
 # Check if the image was loaded successfully
 if image is None:
