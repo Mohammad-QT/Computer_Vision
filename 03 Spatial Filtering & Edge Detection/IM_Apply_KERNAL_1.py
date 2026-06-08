@@ -6,6 +6,7 @@ filename = '03 Spatial Filtering & Edge Detection/Test_Image.jpg'
 
 POS_clicked = [0,0]
 clicked = False
+
 def onMouse(event, x, y, flags, param):
     global POS_clicked
     global clicked
@@ -32,14 +33,14 @@ kernel_3x3 = np.array([[-1, -1, -1],
                        [-1, -1, -1]])
 
 kernel_5x5 = np.array([[-1, -1, -1, -1, -1], 
-                       [-1, 1, 2, 1, -1],
-                        [-1, 2, 4, 2, -1],
-                        [-1, 1, 2, 1, -1],
-                        [-1, -1, -1, -1, -1]])
+                       [-1,  1,  2,  1, -1],
+                       [-1,  2,  4,  2, -1],
+                       [-1,  1,  2,  1, -1],
+                       [-1, -1, -1, -1, -1]])
 
 kernel = np.array([[-1, -1, -1],
-                        [-1, 9, -1],
-                        [-1, -1, -1]])
+                    [-1, 9, -1],
+                    [-1, -1, -1]])
 
 
 cv2.namedWindow("MAIN",cv2.WINDOW_AUTOSIZE)
@@ -63,7 +64,7 @@ else:
     k5 = ndimage.convolve(image, kernel_5x5)
 
     blurred = cv2.GaussianBlur(image, (11,11), 0)
-    
+
     g_hpf = image - blurred
 
     dst = image

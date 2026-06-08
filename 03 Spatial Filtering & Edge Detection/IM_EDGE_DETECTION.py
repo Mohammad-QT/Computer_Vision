@@ -2,10 +2,16 @@ import cv2
 import numpy as np
 from scipy import ndimage
 
+# 1. Gaussian Blured
+# 2. Median Blured
+# 3. Laplacian Blured
+# 4. Canny Edge Detection with trackbars for thresholds P1 and P2
+
 filename = '03 Spatial Filtering & Edge Detection/Test_Image.jpg'
 
 POS_clicked = [0,0]
 clicked = False
+
 global var_P1
 global var_P2
 
@@ -14,22 +20,24 @@ def nothing(x):
 def onMouse(event, x, y, flags, param):
     global POS_clicked
     global clicked
+
     if event == cv2.EVENT_MOUSEMOVE:
         POS_clicked = [x,y]
         print (image[y,x])
-        
+
         clicked = True
         print (POS_clicked)
     
 
 global image
 global NewImage
-#image = cv2.imread('Test_Image.jpg', cv2.IMREAD_ANYCOLOR)
+#image = cv2.imread(filename, cv2.IMREAD_ANYCOLOR)
 image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
 
 cv2.namedWindow("MAIN",cv2.WINDOW_AUTOSIZE)
 cv2.namedWindow("EDGE",cv2.WINDOW_AUTOSIZE)
+
 cv2.createTrackbar('P1', 'EDGE', 0, 255, nothing)
 cv2.createTrackbar('P2', 'EDGE', 0, 255, nothing)
 
@@ -47,8 +55,11 @@ else:
     blurred = cv2.GaussianBlur(image, (11,11), 0)
     g_hpf = image - blurred
 
+    #### Median Blured
     BlurredMedian = cv2.medianBlur(image, 5)
-    BluredLaplacian = image;
+
+    #### Laplacian Blured
+    BluredLaplacian = image
     cv2.Laplacian(image, 0, BluredLaplacian, 5)
     normalizedInverseAlpha = (1.0 / 255) * (255 - image)
     Image_BluredLaplacian = BluredLaplacian * normalizedInverseAlpha
@@ -60,10 +71,12 @@ else:
 
     # Loop to continuously read trackbar values and update edge detection
     while True:
+        
         var_P1 = cv2.getTrackbarPos('P1', 'EDGE')
         var_P2 = cv2.getTrackbarPos('P2', 'EDGE')
         
         IMAGE_EDGE = cv2.Canny(image, var_P1, var_P2)
+
         cv2.imshow('EDGE', IMAGE_EDGE)
         
         # Press 'q' to exit
